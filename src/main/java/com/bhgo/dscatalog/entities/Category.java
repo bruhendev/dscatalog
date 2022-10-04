@@ -1,4 +1,4 @@
-package com.bhgo.algafood.entities;
+package com.bhgo.dscatalog.entities;
 
 import java.io.Serializable;
 import java.util.Objects;
