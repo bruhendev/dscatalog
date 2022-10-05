@@ -14,8 +14,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.bhgo.dscatalog.dto.CategoryDTO;
 import com.bhgo.dscatalog.dto.ProductDTO;
+import com.bhgo.dscatalog.entities.Category;
 import com.bhgo.dscatalog.entities.Product;
+import com.bhgo.dscatalog.repositories.CategoryRepository;
 import com.bhgo.dscatalog.repositories.ProductRepository;
 import com.bhgo.dscatalog.services.exceptions.DatabaseException;
 import com.bhgo.dscatalog.services.exceptions.ResourceNotFoundException;
@@ -25,6 +28,9 @@ public class ProductService {
 
 	@Autowired
 	private ProductRepository repository;
+	
+	@Autowired
+	private CategoryRepository categoryRepository;
 
 	@Transactional(readOnly = true)
 	public List<ProductDTO> findAll() {
@@ -48,7 +54,7 @@ public class ProductService {
 	@Transactional
 	public ProductDTO insert(ProductDTO dto) {
 		Product entity = new Product();
-//		entity.setName(dto.getName());
+		copyDtoToEntity(dto, entity);
 		return new ProductDTO(repository.save(entity));
 	}
 
@@ -56,7 +62,7 @@ public class ProductService {
 	public ProductDTO update(Long id, ProductDTO dto) {
 		try {
 			Product entity = repository.getReferenceById(id);
-//			entity.setName(dto.getName());
+			copyDtoToEntity(dto, entity);
 			entity = repository.save(entity);
 			return new ProductDTO(entity);
 		} catch (EntityNotFoundException e) {
@@ -74,4 +80,18 @@ public class ProductService {
 		}
 	}
 
+	private void copyDtoToEntity(ProductDTO dto, Product entity) {
+		entity.setName(dto.getName());
+		entity.setDescription(dto.getDescription());
+		entity.setDate(dto.getDate());
+		entity.setImgUrl(dto.getImgUrl());
+		entity.setPrice(dto.getPrice());
+		
+		entity.getCategories().clear();
+		
+		for (CategoryDTO catDto: dto.getCategories()) {
+			Category category = categoryRepository.getReferenceById(catDto.getId());
+			entity.getCategories().add(category);
+		}
+	}
 }
