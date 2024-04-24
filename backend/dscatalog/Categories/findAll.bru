@@ -5,7 +5,13 @@ meta {
 }
 
 get {
-  url: {{Base_url}}/categories
+  url: {{Base_url}}/categories?pageNumber=0&pageSize=5&orgerBy=id
   body: none
   auth: none
+}
+
+query {
+  pageNumber: 0
+  pageSize: 5
+  orgerBy: id
 }
