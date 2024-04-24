@@ -1,0 +1,17 @@
+meta {
+  name: new Product
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{Base_url}}/products
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Garden"
+  }
+}

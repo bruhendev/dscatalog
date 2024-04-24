@@ -1,0 +1,17 @@
+meta {
+  name: findAll
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{Base_url}}/products?pageNumber=0&pageSize=5&orgerBy=id
+  body: none
+  auth: none
+}
+
+query {
+  pageNumber: 0
+  pageSize: 5
+  orgerBy: id
+}
