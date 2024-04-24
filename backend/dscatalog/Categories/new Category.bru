@@ -1,0 +1,17 @@
+meta {
+  name: new Category
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{Base_url}}/categories
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Garden"
+  }
+}
