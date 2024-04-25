@@ -11,16 +11,16 @@ import com.bruno.dscatalog.entities.Product;
 
 public class ProductDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Long id;
 	private String name;
 	private String description;
 	private Double price;
 	private String imgUrl;
 	private Instant date;
-	
+
 	private List<CategoryDTO> categories = new ArrayList<>();
-	
+
 	public ProductDTO() {
 	}
 
@@ -32,7 +32,7 @@ public class ProductDTO implements Serializable {
 		this.imgUrl = imgUrl;
 		this.date = date;
 	}
-	
+
 	public ProductDTO(Product entity) {
 		this.id = entity.getId();
 		this.name = entity.getName();
@@ -41,7 +41,7 @@ public class ProductDTO implements Serializable {
 		this.imgUrl = entity.getImgUrl();
 		this.date = entity.getDate();
 	}
-	
+
 	public ProductDTO(Product entity, Set<Category> categories) {
 		this(entity);
 		categories.forEach(cat -> this.categories.add(new CategoryDTO(cat)));
@@ -102,6 +102,5 @@ public class ProductDTO implements Serializable {
 	public void setCategories(List<CategoryDTO> categories) {
 		this.categories = categories;
 	}
-	
-	
+
 }
