@@ -5,13 +5,13 @@ meta {
 }
 
 get {
-  url: {{Base_url}}/products?pageNumber=0&pageSize=5&orgerBy=id
+  url: {{Base_url}}/products?page=0&size=5&sort=name,desc
   body: none
   auth: none
 }
 
 query {
-  pageNumber: 0
-  pageSize: 5
-  orgerBy: id
+  page: 0
+  size: 5
+  sort: name,desc
 }
