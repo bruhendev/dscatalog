@@ -1,0 +1,28 @@
+meta {
+  name: update Product
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{Base_url}}/users/3
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "firstName": "Bruno",
+    "lastName": "Brown",
+    "email": "brunob@gmail.com",
+    "password": "123456",
+    "roles": [
+      {
+        "id": 1
+      },
+      {
+        "id": 2
+      }
+    ]
+  }
+}
